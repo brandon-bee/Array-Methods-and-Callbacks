@@ -49,15 +49,8 @@ Use the higher-order function getWinners to do the following:
 3. Determines the winner (home or away) of each `finals` game. 
 4. Returns the names of all winning countries in an array called `winners` */ 
 
-function getWinners(array, callback) {
-    const winners = [];
-    callback(array).forEach(function(item){
-        if(item["Home Team Goals"] > item["Away Team Goals"]){
-            winners.push(item["Home Team Name"]);
-        }else if(item["Home Team Goals"] < item["Away Team Goals"]){
-            winners.push(item["Away Team Name"]);
-        }
-    });
+function getWinners(array, getFinalscb) {
+    const winners = getFinalscb(array).map(item => item["Home Team Goals"] > item["Away Team Goals"] ? item["Home Team Name"] : item["Away Team Name"]);
     return winners;
 }
 
@@ -73,17 +66,22 @@ hint: the strings returned need to exactly match the string in step 4.
  */
 
 function getWinnersByYear(array, getFinalscb, getYearscb, getWinnerscb) {
-    const newArray = [];
-    getFinalscb(array).forEach(function(item, index){
-        let country = getWinnerscb(array, getFinalscb)[index];
-        let year = getYearscb(array, getFinalscb)[index];
-        newArray.push(`In ${year}, ${country} won the world cup!`);
+    const winners = getWinnerscb(array, getFinalscb);
+    const years = getYearscb(array, getFinalscb);
+    const string = winners.map(function(item, index){
+        return `In ${years[index]}, ${item} won the world cup!`
     });
-    return newArray;
-}
-
-console.log(getWinnersByYear(fifaData, getFinals, getYears, getWinners));
-console.log(getWinners(fifaData, getFinals));
+    return string;
+    
+    // const newArray = [];
+    // getFinalscb(array).forEach(function(item, index){
+    //     let country = getWinnerscb(array, getFinalscb)[index];
+    //     let year = getYearscb(array, getFinalscb)[index];
+    //     newArray.push(`In ${year}, ${country} won the world cup!`);
+    // });
+    // return newArray;
+;}
+console.log(getWinnersByYear(fifaData, getFinals, getYears, getWinners))
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher order function getAverageGoals to do the following: 
