@@ -27,13 +27,9 @@ hint - you should be looking at the stage key inside of the objects
 */
 
 function getFinals(data) {
-    const finalsTeams = data.filter(function(item){
-        return item.Stage === "Final";
-    });
+    const finalsTeams = data.filter(item => item.Stage === "Final");
     return finalsTeams;
 }
-
-
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher-order function called getYears to do the following: 
@@ -42,7 +38,8 @@ Use the higher-order function called getYears to do the following:
 3. Return an array called years containing all of the years in the getFinals data set*/
 
 function getYears(array, callback) {
-    // map
+    const years = callback(array).map(item => item.Year);
+    return years;
 }
 
 
