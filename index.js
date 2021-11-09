@@ -42,8 +42,6 @@ function getYears(array, callback) {
     return years;
 }
 
-
-
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher-order function getWinners to do the following:  
 1. Receives an array
@@ -63,6 +61,7 @@ function getWinners(array, callback) {
     return winners;
 }
 
+console.log(getWinners(fifaData, getFinals));
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Use the higher-order function getWinnersByYear to do the following:
 1. Receive an array
@@ -74,8 +73,8 @@ Use the higher-order function getWinnersByYear to do the following:
 hint: the strings returned need to exactly match the string in step 4.
  */
 
-function getWinnersByYear(/* code here */) {
-    /* code here */
+function getWinnersByYear(array, getFinalscb, getYearscb, getWinnerscb) {
+    
 }
 
 
